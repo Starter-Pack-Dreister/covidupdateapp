@@ -10,12 +10,21 @@ async function getCovidData(){
   let activeCases;
   let country;
   let lastUpdate;
+  let deceased;
+  let recovered;
+  let infected;
 
   activeCases = latestData.activeCases;
   country = latestData.country;
   lastUpdate = latestData.lastUpdatedAtApify;
+  infected = latestData.infected;
+  deceased = latestData.deceased;
+  recovered = latestData.recovered;
 
   document.getElementById('cases').textContent = activeCases;
   document.getElementById('country').textContent = country;
   document.getElementById('lastUpdate').textContent = lastUpdate;
+  document.getElementById('infected').textContent = infected;
+  document.getElementById('deceased').textContent = deceased;
+  document.getElementById('recovered').textContent = recovered;
 };
