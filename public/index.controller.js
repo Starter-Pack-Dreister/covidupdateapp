@@ -1,4 +1,11 @@
-console.log('welcome to client side js')
+console.log('welcome to client side js');
+let activeCases;
+let country;
+let lastUpdate;
+let deceased;
+let recovered;
+let infected;
+
 getCovidData();
 
 async function getCovidData(){
@@ -6,13 +13,6 @@ async function getCovidData(){
   const rawData = await fetch('/api/covid-update-now');
   const latestData = await rawData.json();
   console.log('Latest Data', latestData);
-  
-  let activeCases;
-  let country;
-  let lastUpdate;
-  let deceased;
-  let recovered;
-  let infected;
 
   activeCases = latestData.activeCases;
   country = latestData.country;
@@ -27,4 +27,21 @@ async function getCovidData(){
   document.getElementById('infected').textContent = infected;
   document.getElementById('deceased').textContent = deceased;
   document.getElementById('recovered').textContent = recovered;
+};
+
+const saveData = document.getElementById('saveme');
+saveData.addEventListener('click', function(event) {
+  console.log('Clicked');
+});
+
+async function postCovidData(data) {
+  const options = {
+    method: 'POST',
+    headers: {'Content-Type' : 'Application/json'},
+    body: JSON.stringify(data)
+  }
+
+  const postRes = await fetch('/api/covid-update-now', options);
+  const postResData = await postRes.json();
+  console.log('Response from server', postResData);
 };
