@@ -12,6 +12,13 @@ app.listen(port, () => {
   console.log(`Server running at ${port}`);
 });
 
+const covidDb = new Database('coviddatabase.db');
+covidDb.loadDatabase();
+ 
+app.post('/api/covid-update-now', async(req, res, next) => {
+
+});
+
 app.get('/api/covid-update-now', async(req, res, next) => {
   try {
     console.log('GET method');
